@@ -1,6 +1,6 @@
 # persotant
 
-A new Flutter project.
+The simple personal accountancy application
 
 ## Getting Started
 
