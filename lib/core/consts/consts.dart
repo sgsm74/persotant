@@ -9,3 +9,8 @@ class HiveKeys {
   HiveKeys._();
   static String token = 'token';
 }
+
+class ImageAssets {
+  ImageAssets._();
+  static String sliderImageOne = 'assets/images/slider/1.png';
+}
