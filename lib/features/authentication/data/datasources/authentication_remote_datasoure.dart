@@ -2,10 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:persotant/core/consts/consts.dart';
 import 'package:persotant/core/errors/exceptions.dart';
 import 'package:persotant/core/services/http_service.dart';
+import 'package:persotant/core/utils/ok.dart';
 import 'package:persotant/features/authentication/data/models/token_model.dart';
 
 abstract class AuthenticationRemoteDataSource {
-  Future<void> sendOTP(String phone);
+  Future<OK> sendOTP(String phone);
   Future<TokenModel> verfiyOTP(String phone, String otp);
   Future<TokenModel> refreshToken(String refreshToken);
 }
@@ -16,13 +17,13 @@ class AuthenticationRemoteDataSourceImpl
   final HTTPService httpService;
 
   @override
-  Future<void> sendOTP(String phone) async {
+  Future<OK> sendOTP(String phone) async {
     try {
       await httpService.postData(
         ServerPaths.sendOTP,
         data: {'cellphone': phone},
       );
-      return Future.value();
+      return OK();
     } on DioException catch (e) {
       throw ServerException(message: e.message ?? '');
     }
